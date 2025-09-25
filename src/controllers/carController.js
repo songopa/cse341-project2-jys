@@ -45,8 +45,8 @@ exports.createCar = async (req, res) => {
 };
 
 exports.updateCar = async (req, res) => {
-    const { error } = carSchema.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message });
+    // const { error } = carSchema.validate(req.body);
+    // if (error) return res.status(400).json({ error: error.details[0].message });
     try {
         const result = await carModel.updateCar(req.params.id, req.body);
         if (result.matchedCount === 0) return res.status(404).json({ error: 'Car not found' });
