@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Alice Smith",
+    "email": "alice@example.com",
+    "password": "hashedpassword1",
+    "role": "user",
+    "address": "123 Main St, Cityville",
+    "phone": "555-1234",
+    "employment": "Engineer"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bob@example.com",
+    "password": "hashedpassword2",
+    "role": "admin",
+    "address": "456 Oak Ave, Townsville",
+    "phone": "555-5678",
+    "employment": "Manager"
+  },
+  {
+    "name": "Carol Lee",
+    "email": "carol@example.com",
+    "password": "hashedpassword3",
+    "role": "user",
+    "address": "789 Pine Rd, Village",
+    "phone": "555-8765",
+    "employment": "Designer"
+  },
+  {
+    "name": "David Kim",
+    "email": "david@example.com",
+    "password": "hashedpassword4",
+    "role": "user",
+    "address": "321 Maple St, Hamlet",
+    "phone": "555-4321",
+    "employment": "Developer"
+  },
+  {
+    "name": "Eva Brown",
+    "email": "eva@example.com",
+    "password": "hashedpassword5",
+    "role": "user",
+    "address": "654 Cedar Ave, Borough",
+    "phone": "555-2468",
+    "employment": "Teacher"
+  },
+  {
+    "name": "Frank White",
+    "email": "frank@example.com",
+    "password": "hashedpassword6",
+    "role": "user",
+    "address": "987 Spruce Rd, Cityville",
+    "phone": "555-1357",
+    "employment": "Accountant"
+  },
+  {
+    "name": "Grace Green",
+    "email": "grace@example.com",
+    "password": "hashedpassword7",
+    "role": "user",
+    "address": "159 Elm St, Townsville",
+    "phone": "555-9753",
+    "employment": "Nurse"
+  },
+  {
+    "name": "Henry Black",
+    "email": "henry@example.com",
+    "password": "hashedpassword8",
+    "role": "user",
+    "address": "753 Willow Ave, Village",
+    "phone": "555-8642",
+    "employment": "Chef"
+  },
+  {
+    "name": "Ivy Gray",
+    "email": "ivy@example.com",
+    "password": "hashedpassword9",
+    "role": "user",
+    "address": "258 Birch Rd, Hamlet",
+    "phone": "555-3698",
+    "employment": "Artist"
+  },
+  {
+    "name": "Jack Blue",
+    "email": "jack@example.com",
+    "password": "hashedpassword10",
+    "role": "user",
+    "address": "654 Aspen St, Borough",
+    "phone": "555-1472",
+    "employment": "Writer"
+  }
+]

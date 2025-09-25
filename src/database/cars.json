@@ -1,0 +1,112 @@
+[
+  {
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+    "color": "Red",
+    "vin": "VIN0001",
+    "mileage": 25000,
+    "bodyType": "Sedan",
+    "fuel": "Petrol",
+    "cc": 2500
+  },
+  {
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2019,
+    "color": "Blue",
+    "vin": "VIN0002",
+    "mileage": 30000,
+    "bodyType": "Sedan",
+    "fuel": "Petrol",
+    "cc": 1800
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": 2018,
+    "color": "Black",
+    "vin": "VIN0003",
+    "mileage": 40000,
+    "bodyType": "Hatchback",
+    "fuel": "Diesel",
+    "cc": 1600
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Malibu",
+    "year": 2021,
+    "color": "White",
+    "vin": "VIN0004",
+    "mileage": 15000,
+    "bodyType": "Sedan",
+    "fuel": "Petrol",
+    "cc": 2000
+  },
+  {
+    "make": "Nissan",
+    "model": "Altima",
+    "year": 2022,
+    "color": "Gray",
+    "vin": "VIN0005",
+    "mileage": 10000,
+    "bodyType": "Sedan",
+    "fuel": "Hybrid",
+    "cc": 2500
+  },
+  {
+    "make": "Hyundai",
+    "model": "Elantra",
+    "year": 2017,
+    "color": "Silver",
+    "vin": "VIN0006",
+    "mileage": 50000,
+    "bodyType": "Sedan",
+    "fuel": "Petrol",
+    "cc": 1600
+  },
+  {
+    "make": "Kia",
+    "model": "Optima",
+    "year": 2016,
+    "color": "Green",
+    "vin": "VIN0007",
+    "mileage": 60000,
+    "bodyType": "Sedan",
+    "fuel": "Diesel",
+    "cc": 1700
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Jetta",
+    "year": 2015,
+    "color": "Yellow",
+    "vin": "VIN0008",
+    "mileage": 70000,
+    "bodyType": "Sedan",
+    "fuel": "Petrol",
+    "cc": 1400
+  },
+  {
+    "make": "Subaru",
+    "model": "Impreza",
+    "year": 2014,
+    "color": "Orange",
+    "vin": "VIN0009",
+    "mileage": 80000,
+    "bodyType": "Hatchback",
+    "fuel": "Petrol",
+    "cc": 2000
+  },
+  {
+    "make": "Mazda",
+    "model": "Mazda3",
+    "year": 2013,
+    "color": "Purple",
+    "vin": "VIN0010",
+    "mileage": 90000,
+    "bodyType": "Sedan",
+    "fuel": "Diesel",
+    "cc": 2200
+  }
+]

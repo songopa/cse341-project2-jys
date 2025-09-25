@@ -1,0 +1,31 @@
+{
+    "name": "cse341-project2",
+    "version": "1.0.0",
+    "main": "src/app.js",
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^3.0.2",
+        "body-parser": "^2.2.0",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.7",
+        "dotenv": "^16.0.3",
+        "ejs": "^3.1.10",
+        "express": "^5.1.0",
+        "express-session": "^1.18.1",
+        "joi": "^17.9.2",
+        "jsonwebtoken": "^9.0.2",
+        "mongodb": "^6.19.0",
+        "nodemon": "^3.1.10",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1",
+        "yamljs": "^0.3.0"
+    },
+    "description": "CSE 341 Project 2 - CRUD API with User Authentication",
+    "keywords": [],
+    "author": "Julius Songopa",
+    "license": "ISC",
+    "type": "commonjs"
+}
