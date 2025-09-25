@@ -4,7 +4,10 @@ info:
   description: API documentation for CSE341 Project 2 (Users & Cars CRUD)
   version: 1.0.0
 servers:
+  - url: https://cse341-project2-jys.onrender.com
+    description: Production server
   - url: http://localhost:3000
+    description: Local server
 paths:
   /users:
     get:
