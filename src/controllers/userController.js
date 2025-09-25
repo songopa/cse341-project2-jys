@@ -5,9 +5,9 @@ const userModel = require('../models/user');
 
 const userSchema = Joi.object({
     name: Joi.string().required(),
-    gender: Joi.string().optional(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
+    gender: Joi.string().optional(),
     role: Joi.string().valid('user', 'admin').required(),
     address: Joi.string().required(),
     phone: Joi.string().required(),
