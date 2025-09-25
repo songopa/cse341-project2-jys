@@ -1,5 +1,6 @@
 const { getDb } = require('../database/db');
 const Joi = require('joi');
+const carModel = require('../models/car');
 
 const carSchema = Joi.object({
     make: Joi.string().required(),
@@ -15,8 +16,7 @@ const carSchema = Joi.object({
 
 exports.getAllCars = async (req, res) => {
     try {
-        const db = getDb();
-        const cars = await db.collection('cars').find().toArray();
+        const cars = await carModel.getAllCars();
         res.json(cars);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -25,8 +25,7 @@ exports.getAllCars = async (req, res) => {
 
 exports.getCarById = async (req, res) => {
     try {
-        const db = getDb();
-        const car = await db.collection('cars').findOne({ _id: req.params.id });
+        const car = await carModel.getCarById(req.params.id);
         if (!car) return res.status(404).json({ error: 'Car not found' });
         res.json(car);
     } catch (err) {
@@ -38,8 +37,7 @@ exports.createCar = async (req, res) => {
     const { error } = carSchema.validate(req.body);
     if (error) return res.status(400).json({ error: error.details[0].message });
     try {
-        const db = getDb();
-        const result = await db.collection('cars').insertOne(req.body);
+        const result = await carModel.insertCar(req.body);
         res.status(201).json(result.ops[0]);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -50,8 +48,7 @@ exports.updateCar = async (req, res) => {
     const { error } = carSchema.validate(req.body);
     if (error) return res.status(400).json({ error: error.details[0].message });
     try {
-        const db = getDb();
-        const result = await db.collection('cars').updateOne({ _id: req.params.id }, { $set: req.body });
+        const result = await carModel.updateCar(req.params.id, req.body);
         if (result.matchedCount === 0) return res.status(404).json({ error: 'Car not found' });
         res.json({ message: 'Car updated' });
     } catch (err) {
@@ -61,8 +58,7 @@ exports.updateCar = async (req, res) => {
 
 exports.deleteCar = async (req, res) => {
     try {
-        const db = getDb();
-        const result = await db.collection('cars').deleteOne({ _id: req.params.id });
+        const result = await carModel.deleteCar(req.params.id);
         if (result.deletedCount === 0) return res.status(404).json({ error: 'Car not found' });
         res.json({ message: 'Car deleted' });
     } catch (err) {
