@@ -168,6 +168,8 @@ paths:
           required: true
           schema:
             type: string
+      security:
+        - openIdConnect: []
       responses:
         '200':
           description: Car deleted
@@ -200,8 +202,6 @@ paths:
       summary: Get authenticated user's profile
       tags: [Auth]
       description: Returns the authenticated user's profile information obtained from the OpenID Connect provider. This endpoint is protected and requires a valid session.
-      security:
-        - openIdConnect: []
       responses:
         '200':
           description: User profile
