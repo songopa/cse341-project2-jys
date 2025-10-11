@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to CSE341 Project 2 API</h1>
+        <% if (user) { %>
+            <p>Hello, <strong> <%= user.nickname || user.email %> </strong>! 
+                You have successfully logged in.
+            </p>
+            <div>
+                <strong>Your Profile Details</strong>
+                <p>Name: <%= user.name || user.nickname %></p>
+                <p>Email: <%= user.email %></p>
+                <p>Nickname: <%= user.nickname || 'N/A' %></p>
+
+            </div>
+            <a class="button" href="/">Home</a>
+            <a class="button bg-danger" href="/logout">Logout</a>
+            <% } else { %>
+                <p>Please <a href="/login">log in</a> to access your profile and documentation.</p>
+                <a class="button" href="/api-docs">View API Docs</a>
+                <% } %>
+    </div>
+</body>
+
+</html>

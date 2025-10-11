@@ -25,9 +25,13 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
+const { ObjectId } = require('mongodb');
+
 exports.getUserById = async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid user id' });
     try {
-        const user = await userModel.getUserById(req.params.id);
+        const user = await userModel.getUserById(id);
         if (!user) return res.status(404).json({ error: 'User not found' });
         delete user.password; // Remove password from response
         res.json(user);
@@ -55,7 +59,9 @@ exports.updateUser = async (req, res) => {
         if (!req.body || Object.keys(req.body).length === 0) {
             return res.status(400).json({ message: 'Request body is missing or empty.' });
         }
-        const result = await userModel.updateUser(req.params.id, req.body);
+        const id = req.params.id;
+        if (!ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid user id' });
+        const result = await userModel.updateUser(id, req.body);
         if (result.matchedCount === 0) return res.status(404).json({ message: 'User not found' });
         res.json({ message: 'User updated', user: result });
     } catch (err) {
@@ -64,8 +70,10 @@ exports.updateUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid user id' });
     try {
-        const result = await userModel.deleteUser(req.params.id);
+        const result = await userModel.deleteUser(id);
         if (result.deletedCount === 0) return res.status(404).json({ error: 'User not found' });
         res.status(200).json({ message: 'User deleted' });
     } catch (err) {
@@ -75,13 +83,14 @@ exports.deleteUser = async (req, res) => {
 
 
 exports.loginUser = async (req, res) => {
+    console.log('Login attempt:', req.body);
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
     try {
         const user = await userModel.getUserByEmail(email);
-        if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+        if (!user) return res.status(401).json({ error: 'Invalid ecredentials' });
         const valid = await bcrypt.compare(password, user.password);
-        if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
+        if (!valid) return res.status(401).json({ error: 'Invalid pcredentials' });
         // Start session
         req.session.user = {
             _id: user._id,
@@ -96,3 +105,18 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.profileView = async (req, res) => {
+    try {
+        if (!req.oidc.isAuthenticated()) {
+            return res.status(401).send('Not authenticated');
+        }
+        res.render('profile');
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.loginView = (req, res) => {
+    res.render('login');
+}

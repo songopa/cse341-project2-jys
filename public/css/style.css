@@ -24,7 +24,7 @@ p {
     margin-bottom: 32px;
 }
 
-a.button {
+a.button, button {
     display: inline-block;
     background: #1976d2;
     color: #fff;
@@ -32,10 +32,11 @@ a.button {
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
-    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
 }
 
-a.button:hover {
+a.button:hover, button:hover {
     background: #1565c0;
 }
 
@@ -47,4 +48,24 @@ a.button:hover {
     margin: 0 12px;
     color: #1976d2;
     text-decoration: underline;
+}
+.form-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+.register-link {
+    margin-top: 24px;
+}
+
+.bg-danger {
+    background: red !important;
 }

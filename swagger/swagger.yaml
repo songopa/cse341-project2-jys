@@ -72,6 +72,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+      security:
+        - openIdConnect: []
       responses:
         '200':
           description: User updated
@@ -84,6 +86,8 @@ paths:
           required: true
           schema:
             type: string
+      security:
+        - openIdConnect: []
       responses:
         '200':
           description: User deleted
@@ -169,56 +173,44 @@ paths:
           description: Car deleted
         '404':
           description: Car not found
-  /auth/login:
-    post:
-      summary: Login with email and password
+  /login:
+    get:
+      summary: Redirect to OpenID Connect provider to start authentication
       tags: [Auth]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
+      description: |
+        Initiates an OpenID Connect authentication flow using the express-openid-connect middleware.
+        The server will redirect the user to the OIDC provider's authorization endpoint. After successful
+        authentication the provider will redirect back to the application callback URL.
+      responses:
+        '302':
+          description: Redirect to OpenID Connect provider
+  /logout:
+    get:
+      summary: Logout the current user
+      tags: [Auth]
+      description: |
+        Logs the user out of the application. When using express-openid-connect this will clear the local session
+        and (optionally) redirect to the identity provider's logout endpoint depending on configuration.
+      responses:
+        '302':
+          description: Redirect after logout
+
+  /profile:
+    get:
+      summary: Get authenticated user's profile
+      tags: [Auth]
+      description: Returns the authenticated user's profile information obtained from the OpenID Connect provider. This endpoint is protected and requires a valid session.
+      security:
+        - openIdConnect: []
       responses:
         '200':
-          description: Login successful
+          description: User profile
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  user:
-                    $ref: '#/components/schemas/User'
-        '400':
-          description: Missing credentials
+                $ref: '#/components/schemas/Profile'
         '401':
-          description: Invalid credentials
-  /auth/register:
-    post:
-      summary: Register a new user
-      tags: [Auth]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '201':
-          description: User registered
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        '400':
-          description: Validation error
+          description: Not authenticated
 components:
   schemas:
     User:
@@ -261,3 +253,36 @@ components:
           type: string
         cc:
           type: integer
+    Profile:
+      type: object
+      properties:
+        sid:
+          type: string
+        nickname:
+          type: string
+        name:
+          type: string
+        picture:
+          type: string
+        updated_at:
+          type: string
+        email:
+          type: string
+        email_verified:
+          type: string
+        sub:
+          type: string
+  securitySchemes:
+    Auth0:
+      type: oauth2
+      flows:
+        password:
+          authorizationUrl: https://dev-v5cfj1gszxaoe8zu.us.auth0.com/authorize
+      
+tags:
+  - name: Users
+    description: Operations related to users
+  - name: Cars
+    description: Operations related to cars
+  - name: Auth
+    description: Authentication and user profile operations

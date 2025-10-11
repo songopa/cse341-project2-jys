@@ -14,15 +14,26 @@
         <h1>Welcome to CSE341 Project 2 API</h1>
         <p>This is a modern Node.js API for managing users and cars, featuring MongoDB, session-based authentication,
             and Swagger documentation.</p>
-        <a class="button" href="/api-docs">View API Docs</a>
+        <!-- <a class="button" href="/api-docs">View API Docs</a> -->
         <!-- <div class="links">
             <a href="/users">Users</a>
             <a href="/cars">Cars</a>
             <a href="/auth/register">Register</a>
             <a href="/auth/login">Login</a>
         </div> -->
+        <div>
+            <% if (user) { %>
+                <p>Hello, <strong>
+                        <%= user.name || user.email %>
+                    </strong>! You have successfully logged in.</p>
+                <a class="button" href="/api-docs">View API Docs</a>
+                <a class="button" href="/users/profile/details">View Profile</a>
+                <% } else { %>
+                    <p>Please <a class="button" href="/login">Log In</a> to access your profile and documentation.</p>
+            <% } %>
+            <a class="button" href="/api-docs">View API Docs</a>
+        </div>
     </div>
-    <script src="/js/common.js"></script>
 </body>
 
 </html>

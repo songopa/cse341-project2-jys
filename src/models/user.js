@@ -36,11 +36,18 @@ async function getAllUsers() {
 }
 async function updateUser(id, update) {
     const col = await connect();
+    // If password is being updated, hash it
+    if (update.password) {
+        const hashedPassword = await bcrypt.hash(update.password, 10);
+        update.password = hashedPassword;
+    }
     const result = await col.findOneAndUpdate(
         { _id: new ObjectId(id) },
         { $set: update },
         { returnDocument: 'after' }
     )
+    //remove password from returned user object
+    if(result) delete result.password;
     return result;
 }
 async function deleteUser(id) {

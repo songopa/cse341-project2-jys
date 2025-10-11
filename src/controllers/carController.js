@@ -23,9 +23,13 @@ exports.getAllCars = async (req, res) => {
     }
 };
 
+const { ObjectId } = require('mongodb');
+
 exports.getCarById = async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid car id' });
     try {
-        const car = await carModel.getCarById(req.params.id);
+        const car = await carModel.getCarById(id);
         if (!car) return res.status(404).json({ error: 'Car not found' });
         res.json(car);
     } catch (err) {
@@ -48,7 +52,9 @@ exports.updateCar = async (req, res) => {
     // const { error } = carSchema.validate(req.body);
     // if (error) return res.status(400).json({ error: error.details[0].message });
     try {
-        const result = await carModel.updateCar(req.params.id, req.body);
+        const id = req.params.id;
+        if (!ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid car id' });
+        const result = await carModel.updateCar(id, req.body);
         if (result.matchedCount === 0) return res.status(404).json({ error: 'Car not found' });
         res.json({ message: 'Car updated' });
     } catch (err) {
@@ -57,8 +63,10 @@ exports.updateCar = async (req, res) => {
 };
 
 exports.deleteCar = async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid car id' });
     try {
-        const result = await carModel.deleteCar(req.params.id);
+        const result = await carModel.deleteCar(id);
         if (result.deletedCount === 0) return res.status(404).json({ error: 'Car not found' });
         res.json({ message: 'Car deleted' });
     } catch (err) {
