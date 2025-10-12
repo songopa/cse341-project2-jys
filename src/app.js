@@ -77,9 +77,10 @@ app.use(function (req, res, next) {
 // Error handlers
 app.use(function (err, req, res, next) {
     const status = err.status || 500;
-    res.status(status).json({ message: err.message || 'Internal Server Error' });
+    // res.status(status).json({ message: err.message || 'Internal Server Error' });
     res.render('error', {
-        message: err.message,
+        status: status,
+        message: err.message || 'Internal Server Error',
         error: process.env.NODE_ENV !== 'production' ? err : {}
     });
 });
